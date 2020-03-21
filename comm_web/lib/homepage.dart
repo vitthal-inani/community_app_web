@@ -126,6 +126,24 @@ class _homepageState extends State<homepage> {
                         width: 130,
                         child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
                   ),
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child:SizedBox(
+                        height: 130,
+                        width: 130,
+                        child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child:SizedBox(
+                        height: 130,
+                        width: 130,
+                        child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
+                  ),
                 ],
             ),
           ),

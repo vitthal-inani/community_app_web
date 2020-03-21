@@ -11,6 +11,7 @@ class _homepageState extends State<homepage> {
   List<String> _countries=["France","Uganda","Italy","Japan"];
   @override
   Widget build(BuildContext context) {
+    var _screensize = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
@@ -90,36 +91,43 @@ class _homepageState extends State<homepage> {
           Container(
               padding: EdgeInsets.all(20),
               child: Text("Popular Stories",style: TextStyle(fontSize: 30),)),
-          Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(15),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
-                child:SizedBox(
-                  height: 130,
-                  width: 130,
-                  child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
-              ),
-              Container(
-                margin: EdgeInsets.all(15),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
-                child:SizedBox(
-                    height: 130,
-                    width: 130,
-                    child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
-              ),
-              Container(
-                margin: EdgeInsets.all(15),
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
-                child:SizedBox(
-                    height: 130,
-                    width: 130,
-                    child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
-              ),
-            ],
+          Container(
+            height: 200,
+            width: _screensize.width*0.5,
+            alignment: Alignment.topCenter,
+            child: ListView(
+//              padding: const EdgeInsets.all(2),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child:SizedBox(
+                      height: 130,
+                      width: 130,
+                      child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child:SizedBox(
+                        height: 130,
+                        width: 130,
+                        child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(color: Colors.deepPurpleAccent,borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child:SizedBox(
+                        height: 130,
+                        width: 130,
+                        child: Text("France",style: TextStyle(fontSize: 28,color: Colors.white),)),
+                  ),
+                ],
+            ),
           ),
           Container(
               padding: EdgeInsets.all(20),
@@ -135,6 +143,8 @@ class _homepageState extends State<homepage> {
                     children: <Widget>[
                       Icon(Icons.supervised_user_circle,size: 40),
                       Container(
+                        padding: EdgeInsets.fromLTRB(0,0,1,10),
+                        decoration: BoxDecoration(border: Border.all(width: 2),),
                         child:Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -147,7 +157,6 @@ class _homepageState extends State<homepage> {
                       Icon(Icons.bookmark,size: 40),
                       ],
                 ),
-
                 ),
               ],
             ),

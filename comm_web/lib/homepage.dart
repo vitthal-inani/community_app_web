@@ -19,10 +19,11 @@ class _homepageState extends State<homepage> {
           children: <Widget>[
             Container(
               height: 100,
+              margin: EdgeInsets.all(0),
               width: _screensize.width* 0.56,
               child: Scaffold(
                 appBar: new AppBar(
-                  backgroundColor: Colors.blueGrey,
+                  backgroundColor: Colors.lightBlueAccent.shade200,
                   title: new Text("Home"),
                   actions: <Widget>[
                     IconButton(icon: Icon(Icons.notifications), onPressed: () => debugPrint("Icon Tapped")),

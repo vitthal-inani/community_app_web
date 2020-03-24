@@ -8,22 +8,22 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
   List<String> _tags = ["Popular", "Recommended", "Trending", "Travelling"];
-  List<String> _countries = ["France", "Uganda", "Italy", "Japan"];
+  List<String> _countries = ["France", "Uganda", "Italy", "Japan","Korea"];
   @override
   Widget build(BuildContext context) {
     var _screensize = MediaQuery.of(context).size;
     return Container(
-        padding: EdgeInsets.all(20),
+//        padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               height: 100,
               margin: EdgeInsets.all(0),
-              width: _screensize.width* 0.56,
+              width: _screensize.width* 0.6,
               child: Scaffold(
                 appBar: new AppBar(
-                  backgroundColor: Colors.lightBlueAccent.shade200,
+                  backgroundColor: Colors.black38,
                   title: new Text("Home"),
                   actions: <Widget>[
                     IconButton(icon: Icon(Icons.notifications), onPressed: () => debugPrint("Icon Tapped")),
@@ -35,7 +35,7 @@ class _homepageState extends State<homepage> {
             ),
             Container(
                 height: 80,
-                width: _screensize.width * 0.56,
+                width: _screensize.width * 0.60,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: _tags.length,
@@ -72,7 +72,7 @@ class _homepageState extends State<homepage> {
                 )),
             Container(
                 height: 200,
-                width: _screensize.width * 0.56,
+                width: _screensize.width * 0.60,
                 alignment: Alignment.topCenter,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -87,9 +87,10 @@ class _homepageState extends State<homepage> {
                           borderRadius:
                           BorderRadius.all(Radius.circular(20))
                           ),
-                          child: SizedBox(
+                          child: Container(
                               height: 160,
                               width: 160,
+                              padding: EdgeInsets.all(15) ,
                               child: Text(
                                 _countries[index],
                                 style: TextStyle(
@@ -99,14 +100,14 @@ class _homepageState extends State<homepage> {
                       ]);
                     })),
             Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(15),
                 child: Text(
                   "Recent Posts",
                   style: TextStyle(fontSize: 30),
                 )),
             Container(
                 height: _screensize.height*0.3,
-                width: _screensize.width * 0.56,
+                width: _screensize.width * 0.60,
                 alignment: Alignment.topCenter,
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,

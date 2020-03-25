@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dashweb/dash.dart';
 import 'package:dashweb/posts.dart';
+import 'package:dashweb/tags.dart';
+import 'package:dashweb/ratings.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,11 +38,9 @@ class _MyAppState extends State<MyApp> {
         return Dash(
           title:_navitems[1]);
       case 2:
-        return Dash(
-          title:_navitems[2]);
+        return Tags();
       case 3:
-        return Dash(
-          title:_navitems[3]);
+        return Ratings();
       case 4:
         return Posts();
       default:

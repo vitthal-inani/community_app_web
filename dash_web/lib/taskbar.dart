@@ -1,12 +1,30 @@
+import 'package:dashweb/dash.dart';
 import 'package:flutter/material.dart';
 
 class taskbar extends StatefulWidget {
+  taskbar({
+    Key key,
+    this.title,
+    this.count,
+    this.changePage,
+  }) : super(key:key);
+
+  final String title;
+  final int count;
+  final Function changePage;
+//  final ValueChanged<int> changePage;
+
   @override
   _taskbarState createState() => _taskbarState();
 }
 
 class _taskbarState extends State<taskbar> {
-  List<String> _navitems = ['History', 'Tags', 'Rating', 'Posts'];
+  List<String> _navitems = ['Dashboard','History', 'Tags', 'Rating', 'Posts'];
+  int val;
+  bool isChosen=false;
+  void _onPressed() {
+    widget.changePage(val);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +33,10 @@ class _taskbarState extends State<taskbar> {
       width: _screensize.width * 0.4,
       padding: EdgeInsets.all(20),
 
-      decoration: BoxDecoration(
-        color: Colors.blue[90],
-        border: Border(right: BorderSide(color:Colors.lightBlueAccent,width:2)),
-      ),
+//      decoration: BoxDecoration(
+//        color: Colors.blue[90],
+//        border: Border(right: BorderSide(color:Colors.lightBlueAccent,width:2)),
+//      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -30,7 +48,7 @@ class _taskbarState extends State<taskbar> {
             color: Colors.black,
           )),
           Container(
-              child: Icon(Icons.account_circle, size: 100, color: Colors.black)),
+              child: Icon(Icons.account_box, size: 170, color: Colors.blueGrey)),
           Container(
 //              alignment: Alignment(0.2, -18),
               child: Text("Name",
@@ -71,7 +89,13 @@ class _taskbarState extends State<taskbar> {
                             child: Text(_navitems[index],
                                 style: TextStyle(fontSize: 25),textAlign: TextAlign.center,),
                           )),
-                      onTap: () => debugPrint("i was tapped"),
+                      onTap: () {
+                        this.setState(() {
+                          val=index;
+                          isChosen=!isChosen;
+                        });
+                        _onPressed();
+                      },
                     ),
                   );
                 }),

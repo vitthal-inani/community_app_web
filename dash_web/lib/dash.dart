@@ -18,10 +18,13 @@ class _DashState extends State<Dash> {
     var _screensize = MediaQuery.of(context).size;
     var str=widget.title;
     return Container(
-      width: _screensize.width*0.58,
-      child: Text(
+      height: _screensize.height,
+      width: _screensize.width*0.60,
+      color: Colors.black12,
+      child: Center(
+        child: Text(
         "$str",style: TextStyle(fontSize: 40),
-      ),
+      ),),
     );
   }
 }

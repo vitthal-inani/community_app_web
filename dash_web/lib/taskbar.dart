@@ -20,10 +20,17 @@ class taskbar extends StatefulWidget {
 
 class _taskbarState extends State<taskbar> {
   List<String> _navitems = ['Dashboard','History', 'Tags', 'Rating', 'Posts'];
+  List<bool> isSelect = [false, false, false, false, false];
+  List<bool> wasSel = [false, false, false, false, false];
+//  bool isSel;
   int val;
-  bool isChosen=false;
+//  bool isChosen=false;
   void _onPressed() {
     widget.changePage(val);
+    for(var i=0;i<5;i++){
+      if(i!=val){
+      isSelect[i]=false;}
+    }
   }
 
   @override
@@ -79,20 +86,20 @@ class _taskbarState extends State<taskbar> {
                     margin: EdgeInsets.all(7),
                     child: InkWell(
                       child: Card(
-                          color: Colors.lightBlueAccent,
+                          color: isSelect[index]?Colors.blueGrey:Colors.lightBlueAccent,
                           elevation: 4,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4))
                           ),
                           child: Container(
-                            padding: EdgeInsets.all(6),
+                            padding: EdgeInsets.all(10),
                             child: Text(_navitems[index],
                                 style: TextStyle(fontSize: 25),textAlign: TextAlign.center,),
                           )),
                       onTap: () {
                         this.setState(() {
                           val=index;
-                          isChosen=!isChosen;
+                          isSelect[index]=true;
                         });
                         _onPressed();
                       },

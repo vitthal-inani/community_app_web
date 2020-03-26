@@ -20,7 +20,7 @@ class _RatingsState extends State<Ratings> {
   Widget build(BuildContext context) {
     var _screensize = MediaQuery.of(context).size;
     return Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(30),
         height: _screensize.height,
         width: _screensize.width * 0.6,
         color: Colors.black12,

@@ -7,7 +7,8 @@ class Posts extends StatefulWidget {
 }
 
 class _PostsState extends State<Posts> {
-  List<String> _countries=["Italy","India","Japan","Uganda","UK"];
+  List<String> _countries=["Italy","Australia","Japan","Uganda","UK"];
+  List<String> _posttags=["Shared","Commented","Liked"];
   @override
   Widget build(BuildContext context) {
     var _screensize = MediaQuery.of(context).size;
@@ -16,17 +17,54 @@ class _PostsState extends State<Posts> {
         height: _screensize.height,
         width: _screensize.width*0.60,
 //        margin: EdgeInsets.all(20),
-//        padding: EdgeInsets.all(30),
+        padding: EdgeInsets.all(30),
         color: Colors.black12,
         alignment: Alignment.topLeft,
         child: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(top: 40,bottom: 10),
-            child:Text("Last week",style: TextStyle(fontSize: 30),textAlign: TextAlign.end,),
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.all(10),
+            child: Text("Posts",style: TextStyle(fontSize: 30),)
           ),
           Container(
-            height: _screensize.height*0.88,
+            height: 200,
+            width: _screensize.width * 0.60,
+            alignment: Alignment.topCenter,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _posttags.length,
+                itemBuilder: (context, index) {
+                  return Column(children: <Widget>[
+                    Card(
+                      margin: EdgeInsets.all(15),
+                      elevation: 2.0,
+                      color: Colors.indigo,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(15))
+                      ),
+                      child: Container(
+                          height: 160,
+                          width: 210,
+                          padding: EdgeInsets.all(25) ,
+//                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            _posttags[index],
+                            style: TextStyle(
+                                fontSize: 28, color: Colors.white),
+                          )),
+                    ),
+                  ]);
+                }),
+          ),
+          Container(
+            margin: EdgeInsets.only(bottom: 20),
+            alignment: Alignment.centerLeft,
+            child:Text("Your Posts",style: TextStyle(fontSize: 30),textAlign: TextAlign.end,),
+          ),
+          Container(
+            height: _screensize.height*0.56,
             child: ListView.builder(
               padding: EdgeInsets.all(5),
               itemCount: _countries.length,

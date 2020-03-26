@@ -5,6 +5,7 @@ import 'package:dashweb/dash.dart';
 import 'package:dashweb/posts.dart';
 import 'package:dashweb/tags.dart';
 import 'package:dashweb/ratings.dart';
+import 'package:dashweb/history.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   void _changePage(int val) {
     setState(() {
       count=val;
-      print(count);
+//      print(count);
     });
   }
 
@@ -35,8 +36,7 @@ class _MyAppState extends State<MyApp> {
         return Dash(
           title:_navitems[0]);
       case 1:
-        return Dash(
-          title:_navitems[1]);
+        return History();
       case 2:
         return Tags();
       case 3:

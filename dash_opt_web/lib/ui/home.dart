@@ -25,29 +25,67 @@ class Home extends StatelessWidget {
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[Padding(padding: EdgeInsets.fromLTRB(130, 20, 15, 10), child:
-              FloatingActionButton.extended(label: Text("Popular"), backgroundColor: Colors.grey.shade500,
-                onPressed: null,),),
-                Padding(padding: EdgeInsets.fromLTRB(10, 20, 30, 10), child:
-                FloatingActionButton.extended(label: Text("Recommended"), backgroundColor: Colors.grey.shade500,
-                  onPressed: null,),),
-                Padding(padding: EdgeInsets.fromLTRB(10, 20, 30, 10), child:
-                FloatingActionButton.extended(label: Text("New Topics"), backgroundColor: Colors.grey.shade500,
-                  onPressed: null,),),
-                Padding(padding: EdgeInsets.fromLTRB(10, 20, 30, 10), child:
-                FloatingActionButton.extended(label: Text("Tourism"), backgroundColor: Colors.grey.shade500,
-                  onPressed: null,),),
-                Padding(padding: EdgeInsets.fromLTRB(10, 20, 30, 10), child:
-                FloatingActionButton.extended(label: Text("Food"), backgroundColor: Colors.grey.shade500,
-                  onPressed: null,),),
-                Padding(padding: EdgeInsets.fromLTRB(10, 20, 30, 10), child:
-                FloatingActionButton.extended(label: Text("Commute"), backgroundColor: Colors.grey.shade500,
-                  onPressed: null,),),
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(130, 20, 15, 10),
+                  child: FloatingActionButton.extended(
+                    label: Text("Popular"),
+                    backgroundColor: Colors.grey.shade500,
+                    onPressed: null,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
+                  child: FloatingActionButton.extended(
+                    label: Text("Recommended"),
+                    backgroundColor: Colors.grey.shade500,
+                    onPressed: null,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
+                  child: FloatingActionButton.extended(
+                    label: Text("New Topics"),
+                    backgroundColor: Colors.grey.shade500,
+                    onPressed: null,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
+                  child: FloatingActionButton.extended(
+                    label: Text("Tourism"),
+                    backgroundColor: Colors.grey.shade500,
+                    onPressed: null,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
+                  child: FloatingActionButton.extended(
+                    label: Text("Food"),
+                    backgroundColor: Colors.grey.shade500,
+                    onPressed: null,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 20, 30, 10),
+                  child: FloatingActionButton.extended(
+                    label: Text("Commute"),
+                    backgroundColor: Colors.grey.shade500,
+                    onPressed: null,
+                  ),
+                ),
 
 //                Flo(padding: EdgeInsets.fromLTRB(20, 40, 30, 40),child: Text("Popular"), color: Colors.grey.shade500,),
               ],
             ),
-            Text("Popular Stories", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 25,), textAlign: TextAlign.left,),
+            Text(
+              "Popular Stories",
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 25,
+              ),
+              textAlign: TextAlign.left,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -248,53 +286,61 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
-            Text("Recent Posts", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 25,), textAlign: TextAlign.left,),
-            Column(mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(18),
-                height: MediaQuery.of(context).size.height / 3.2,
+            Text(
+              "Recent Posts",
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 25,
+              ),
+              textAlign: TextAlign.left,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(18),
+                  height: MediaQuery.of(context).size.height / 3.2,
 //                width: MediaQuery.of(context).size.height,
-              width: 1200,
-                alignment: Alignment.center,
-                child: Card(
-                  elevation: 5,
-                  color: Colors.grey.shade300,
-                  child: Padding(
-                    padding: EdgeInsets.all(13),
-                    child: Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.center,
-                          child: ListView(
-                            children: <Widget>[
-                              Text(
-                                "Post 1",
-                                style: TextStyle(
-                                    color: Colors.grey.shade700,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w100),
-                              ),
-                              Text(
-                                "User: userxyz",
-                                style: TextStyle(
-                                    color: Colors.grey.shade700,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w100),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                  width: 1200,
+                  alignment: Alignment.center,
+                  child: Card(
+                    elevation: 5,
+                    color: Colors.grey.shade300,
+                    child: Padding(
+                      padding: EdgeInsets.all(13),
+                      child: Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.center,
+                            child: ListView(
+                              children: <Widget>[
+                                Text(
+                                  "Post 1",
+                                  style: TextStyle(
+                                      color: Colors.grey.shade700,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w100),
+                                ),
+                                Text(
+                                  "User: userxyz",
+                                  style: TextStyle(
+                                      color: Colors.grey.shade700,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w100),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
 //        onTap: ()=> debugPrint("Card Tapped"),
-              ),
-            ],)
+                ),
+              ],
+            )
           ],
         ),
-
         drawer: Drawer(
           child: Container(
               color: Colors.deepPurpleAccent,

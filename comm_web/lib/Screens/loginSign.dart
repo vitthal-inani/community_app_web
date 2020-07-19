@@ -1,7 +1,6 @@
 import 'package:comm_web/Screens/authscreensign.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vertical_tabs/vertical_tabs.dart';
 
 import 'authscreen.dart';
 

@@ -140,8 +140,8 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                       _key.currentState.save();
                       print(email);
                       if(await auth.signInWithEmailAndPassword(context, email, password))
-                        db.createUserMetadata("random", email, "123");
-//                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                        {db.createUserMetadata("random", email, "123");
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));}
                     },
                     color: Color(0xffb8e6f5),
                     child: Text(

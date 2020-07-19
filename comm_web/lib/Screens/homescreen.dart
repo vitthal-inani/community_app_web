@@ -1,5 +1,7 @@
 import 'package:comm_web/Screens/home.dart';
+import 'package:comm_web/Screens/loginSign.dart';
 import 'package:comm_web/Screens/volunteer.dart';
+import 'package:comm_web/Services/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,7 @@ class _CommonScreenState extends State<CommonScreen>
     with TickerProviderStateMixin {
   List _selected = List.generate(4, (index) => false);
   int prevVal = 0;
+  AuthService auth=AuthService();
 
   setSelected(int val) {
     if (prevVal != val) {
@@ -273,6 +276,16 @@ class _CommonScreenState extends State<CommonScreen>
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text("Settings"),
+                              ),
+                              InkWell(
+                                onTap: (){
+                                  auth.signOut(context);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIn()));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Signout"),
+                                ),
                               ),
                             ],
                           ),

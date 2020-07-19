@@ -3,7 +3,7 @@ import 'package:comm_web/Services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:comm_web/globals.dart' as globals;
 import 'package:comm_web/Screens/homescreen.dart';
 
 class AuthScreenLogin extends StatefulWidget {
@@ -139,9 +139,9 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                     onPressed: () async {
                       _key.currentState.save();
                       print(email);
-                      if(await auth.signInWithEmailAndPassword(context, email, password))
-                        {db.createUserMetadata("random", email, "123");
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));}
+                      auth.signInWithEmailAndPassword(context, email, password).then((value) => globals.setUserData(value).then((value){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                      }));
                     },
                     color: Color(0xffb8e6f5),
                     child: Text(

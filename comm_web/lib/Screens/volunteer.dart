@@ -1,4 +1,6 @@
+import 'package:comm_web/Services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:comm_web/globals.dart' as globals;
 
 class VolunteerScreen extends StatefulWidget {
   @override
@@ -6,8 +8,14 @@ class VolunteerScreen extends StatefulWidget {
 }
 
 class _VolunteerScreenState extends State<VolunteerScreen> {
-  bool isVolunteer = true;
+  DatabaseService db=DatabaseService(globals.uid);
+  bool isVolunteer = globals.isVolunteer;
   String dropdownValue="Work Hours(9am-5pm)";
+  String country;
+  String phone;
+  String email;
+  String id;
+
   List<bool> _tagsSelected=List.generate(6, (_) => false);
   final _formKey = GlobalKey<FormState>();
   @override
@@ -51,6 +59,7 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                                 child: TextFormField(
                                   decoration: InputDecoration(labelText: "Country",
                                       border: OutlineInputBorder()),
+                                  onSaved: (val)=> country=val,
                                 ),
                               ),
                               Container(
@@ -209,6 +218,7 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                                 child: TextFormField(
                                   decoration: InputDecoration(labelText: "Phone Number",
                                       border: OutlineInputBorder()),
+                                  onSaved: (val)=> phone=val,
                                 ),
                               ),
                               Container(
@@ -218,7 +228,9 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                                 child: TextFormField(
                                   decoration: InputDecoration(labelText: "Email ID",
                                       border: OutlineInputBorder()),
+                                  onSaved: (val)=> email=val,
                                 ),
+
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 10,right: 10,bottom: 15),
@@ -227,6 +239,7 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                                 child: TextFormField(
                                   decoration: InputDecoration(labelText: "Social Media ID",
                                       border: OutlineInputBorder()),
+                                  onSaved: (val)=> id=val,
                                 ),
                               ),
                               Container(
@@ -234,7 +247,13 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                                 margin: EdgeInsets.only(left: 60,right: 60),
                                 child: RaisedButton(
                                   child: Text("Volunteer"),
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    _formKey.currentState.save();
+                                    db.countryDocument(country)
+                                        .then((val)=>db.setVolunteer(country, globals.userName, email, phone, dropdownValue, _tagsSelected, id)
+                                    );
+                                    db.updateUserMetadata();
+                                  },
                                 ),
                               )
                             ],

@@ -3,6 +3,7 @@ import 'package:comm_web/Services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:comm_web/globals.dart' as globals;
 
 class AuthScreenSign extends StatefulWidget {
   final Function signin;
@@ -187,8 +188,9 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                   RaisedButton(
                     onPressed: () async {
                       _key.currentState.save();
-                      await auth.registerWithEmailAndPassword(context, username, email, password);
-//                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                      auth.registerWithEmailAndPassword(context, username, email, password).then((value) => globals.setUserData(value).then((value){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                      }));
                     },
                     color: Color(0xffb8e6f5),
                     child: Text(

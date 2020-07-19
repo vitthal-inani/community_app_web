@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:comm_web/globals.dart' as globals;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:comm_web/Models/user.dart';
@@ -40,13 +41,13 @@ class AuthService{
       print("node id");
       //new user document
       await DatabaseService(user.uid).createUserMetadata(name, email, "");
-      print("hii eyb");
-      _userFromFirebaseUser(context,user.uid);
-      print(user.uid);
-      return true;
+//      globals.setUserData(user.uid).then((value){
+//        return true;
+//      });
+      return user.uid;
     } catch (e) {
       print(e.toString());
-      return false;
+      return null;
     }
   }
 
@@ -55,11 +56,15 @@ class AuthService{
       final AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user=result.user;
-      _userFromFirebaseUser(context,user.uid);
-      return true;
+      print(user.uid);
+//      _userFromFirebaseUser(context,user.uid);
+//      globals.setUserData(user.uid).then((value){
+//        return true;
+//      });
+      return user.uid;
     } catch (e) {
       print(e.toString());
-      return false;
+      return null;
     }
   }
 
@@ -77,18 +82,19 @@ class AuthService{
       idToken: googleSignInAuthentication.idToken,
     );
     final AuthResult result=await _auth.signInWithCredential(credential);
-    String uid=result.user.uid;
-    _userFromFirebaseUser(context, uid);
+    FirebaseUser user=result.user;
+//    _userFromFirebaseUser(context, uid);
+    globals.setUserData(user.uid);
     } catch(e){
       print(e.toString());
     }
     print("We're here");
-    _userFromFirebaseUser(context,user.uid);
     return true;
   }
 
   signOutGoogle() async{
     try {
+      globals.undoUserData();
       return await _googleSignIn.signOut();
     } catch(e){
       print(e.toString());
@@ -98,6 +104,7 @@ class AuthService{
 
   Future signOut(BuildContext context) async {
     try {
+      globals.undoUserData();
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());

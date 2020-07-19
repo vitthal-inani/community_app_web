@@ -1,7 +1,9 @@
+import 'package:comm_web/Screens/guide.dart';
 import 'package:comm_web/Screens/home.dart';
 import 'package:comm_web/Screens/loginSign.dart';
 import 'package:comm_web/Screens/volunteer.dart';
 import 'package:comm_web/Services/auth.dart';
+import 'package:comm_web/globals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,10 +33,7 @@ class _CommonScreenState extends State<CommonScreen>
       case 0:
         return HomeScreen();
       case 1:
-        return Container(
-          color: Colors.white,
-          child: Text("Guide"),
-        );
+        return GuideScreen();
       case 2:
         return Container(
           color: Colors.white,
@@ -232,7 +231,7 @@ class _CommonScreenState extends State<CommonScreen>
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Icon(Icons.account_circle,size: 20,),
-                              Text("Name",style: TextStyle(fontSize: 15),),
+                              Text(userName,style: TextStyle(fontSize: 15),),
                               isexpand
                                 ? Icon(Icons.keyboard_arrow_up)
                                 : Icon(Icons.keyboard_arrow_down),

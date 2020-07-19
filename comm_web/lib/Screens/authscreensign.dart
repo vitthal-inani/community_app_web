@@ -1,4 +1,5 @@
 import 'package:comm_web/Screens/homescreen.dart';
+import 'package:comm_web/Services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,11 @@ class AuthScreenSign extends StatefulWidget {
 }
 
 class _AuthScreenSignState extends State<AuthScreenSign> {
+  AuthService auth=AuthService();
+  String username="";
+  String fullname="";
+  String email="";
+  String password="";
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -98,6 +104,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                                 fontWeight: FontWeight.w500),
                             border: InputBorder.none,
                           ),
+                          onSaved: (val)=>username=val,
                         ),
                       ),
                       SizedBox(
@@ -122,6 +129,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                                 fontWeight: FontWeight.w500),
                             border: InputBorder.none,
                           ),
+                          onSaved: (val)=>fullname=val,
                         ),
                       )
                     ],
@@ -146,6 +154,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                             color: Colors.black, fontWeight: FontWeight.w500),
                         border: InputBorder.none,
                       ),
+                      onSaved: (val)=>email=val,
                     ),
                   ),
                   SizedBox(
@@ -169,14 +178,16 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                             color: Colors.black, fontWeight: FontWeight.w500),
                         border: InputBorder.none,
                       ),
+                      onSaved: (val)=>password=val,
                     ),
                   ),
                   SizedBox(
                     height: _screenSize.height * 0.03,
                   ),
                   RaisedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                    onPressed: () async {
+                      await auth.registerWithEmailAndPassword(context, username, email, password);
+//                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
                     },
                     color: Color(0xffb8e6f5),
                     child: Text(

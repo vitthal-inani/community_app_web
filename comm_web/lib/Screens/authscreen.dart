@@ -1,3 +1,5 @@
+import 'package:comm_web/Services/auth.dart';
+import 'package:comm_web/Services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +16,10 @@ class AuthScreenLogin extends StatefulWidget {
 }
 
 class _AuthScreenLoginState extends State<AuthScreenLogin> {
+  final DatabaseService db=DatabaseService("123");
+  final AuthService auth=AuthService();
+  String email="";
+  String password="";
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -99,6 +105,7 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                             color: Colors.black, fontWeight: FontWeight.w500),
                         border: InputBorder.none,
                       ),
+                      onSaved: (val)=>email=val,
                     ),
                   ),
                   SizedBox(
@@ -122,15 +129,17 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                             color: Colors.black, fontWeight: FontWeight.w500),
                         border: InputBorder.none,
                       ),
+                      onSaved: (val)=>password=val,
                     ),
                   ),
                   SizedBox(
                     height: _screenSize.height * 0.05,
                   ),
                   RaisedButton(
-                    onPressed: () {
-
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                    onPressed: () async {
+                      if(await auth.signInWithEmailAndPassword(context, email, password))
+                        db.createUserMetadata("random", email, "");
+//                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
                     },
                     color: Color(0xffb8e6f5),
                     child: Text(

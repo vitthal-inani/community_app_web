@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Color(0xfffffff2),
         textTheme: GoogleFonts.ralewayTextTheme(),
       ),
-      home: CommonScreen(),
+      home: LogIn(),
     );
   }
 }

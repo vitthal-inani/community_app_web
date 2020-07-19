@@ -5,11 +5,11 @@ import 'dart:async';
 class DatabaseService{
   final String uid;
   DatabaseService(this.uid);
-  final CollectionReference userCollection=FirebaseFirestore.instance.collection('User');
+  final CollectionReference userCollection=Firestore.instance.collection('User');
 
   Future createUserMetadata(String name,String email,String phone) async {
     print("usermetadata");
-    return await userCollection.doc('abc1').set({
+    return await userCollection.document('abc1').setData({
       'Name':name,
       'Email':email,
       'Phone':phone,

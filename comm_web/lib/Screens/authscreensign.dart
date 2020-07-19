@@ -22,7 +22,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
-    final GlobalKey _key = GlobalKey<FormState>();
+    final _key = GlobalKey<FormState>();
     return Container(
       padding: EdgeInsets.symmetric(
           vertical: _screenSize.width * 0.05,
@@ -186,6 +186,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                   ),
                   RaisedButton(
                     onPressed: () async {
+                      _key.currentState.save();
                       await auth.registerWithEmailAndPassword(context, username, email, password);
 //                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
                     },

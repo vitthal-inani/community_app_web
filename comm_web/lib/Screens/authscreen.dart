@@ -23,7 +23,7 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
-    final GlobalKey _key = GlobalKey<FormState>();
+    final _key = GlobalKey<FormState>();
     return Container(
       alignment: Alignment.topRight,
       padding: EdgeInsets.symmetric(
@@ -105,7 +105,7 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                             color: Colors.black, fontWeight: FontWeight.w500),
                         border: InputBorder.none,
                       ),
-                      onSaved: (val)=>email=val,
+                      onSaved: (val)=>email=val.trim(),
                     ),
                   ),
                   SizedBox(
@@ -137,8 +137,10 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                   ),
                   RaisedButton(
                     onPressed: () async {
+                      _key.currentState.save();
+                      print(email);
                       if(await auth.signInWithEmailAndPassword(context, email, password))
-                        db.createUserMetadata("random", email, "");
+                        db.createUserMetadata("random", email, "123");
 //                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
                     },
                     color: Color(0xffb8e6f5),

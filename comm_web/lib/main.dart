@@ -1,3 +1,5 @@
+import 'package:comm_web/Screens/home.dart';
+import 'package:comm_web/Screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Screens/loginSign.dart';
@@ -5,6 +7,7 @@ import 'Screens/loginSign.dart';
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Color(0xfffffff2),
         textTheme: GoogleFonts.ralewayTextTheme(),
       ),
-      home: LogIn(),
+      home: CommonScreen(),
     );
   }
 }

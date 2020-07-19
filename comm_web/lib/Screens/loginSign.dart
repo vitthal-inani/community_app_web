@@ -21,7 +21,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
     // TODO: implement initState
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _animation = ColorTween(
       begin: Color(0xffb8e6f5),
       end: Color(0xfffcc340),
@@ -43,8 +43,8 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
       signin = set;
     });
     (!signin)
-        ? _controller.animateBack(0, curve: Curves.slowMiddle)
-        : _controller.animateTo(1, curve: Curves.slowMiddle);
+        ? _controller.animateBack(0, curve: Curves.ease)
+        : _controller.animateTo(1, curve: Curves.ease);
   }
 
   @override

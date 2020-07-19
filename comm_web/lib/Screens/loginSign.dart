@@ -61,7 +61,7 @@ class _LogInState extends State<LogIn> with SingleTickerProviderStateMixin {
           child: Stack(
             children: [
               Container(
-                height: _screenSize.height * 0.94,
+                height: _screenSize.height * 0.96,
                 width: _screenSize.width * 0.9,
                 child: Stack(
                   children: [

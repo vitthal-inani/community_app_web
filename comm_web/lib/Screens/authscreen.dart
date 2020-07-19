@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:comm_web/Screens/homescreen.dart';
+
 class AuthScreenLogin extends StatefulWidget {
   final Function signin;
 
@@ -126,7 +128,10 @@ class _AuthScreenLoginState extends State<AuthScreenLogin> {
                     height: _screenSize.height * 0.05,
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                    },
                     color: Color(0xffb8e6f5),
                     child: Text(
                       "Login",

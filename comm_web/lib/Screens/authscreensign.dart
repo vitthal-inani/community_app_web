@@ -1,3 +1,4 @@
+import 'package:comm_web/Screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,7 +66,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                 }),
           ),
           SizedBox(
-            height: _screenSize.height * 0.05,
+            height: _screenSize.height * 0.01,
           ),
           Container(
             margin: EdgeInsets.only(right: _screenSize.width * 0.16),
@@ -171,10 +172,12 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                     ),
                   ),
                   SizedBox(
-                    height: _screenSize.height * 0.05,
+                    height: _screenSize.height * 0.03,
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
+                    },
                     color: Color(0xffb8e6f5),
                     child: Text(
                       "Sign Up",

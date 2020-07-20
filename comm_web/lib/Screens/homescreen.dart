@@ -1,6 +1,7 @@
 import 'package:comm_web/Screens/guide.dart';
 import 'package:comm_web/Screens/home.dart';
 import 'package:comm_web/Screens/loginSign.dart';
+import 'package:comm_web/Screens/profile.dart';
 import 'package:comm_web/Screens/volunteer.dart';
 import 'package:comm_web/Services/auth.dart';
 import 'package:comm_web/globals.dart';
@@ -14,7 +15,7 @@ class CommonScreen extends StatefulWidget {
 
 class _CommonScreenState extends State<CommonScreen>
     with TickerProviderStateMixin {
-  List _selected = List.generate(4, (index) => false);
+  List _selected = List.generate(5, (index) => false);
   int prevVal = 0;
   AuthService auth=AuthService();
 
@@ -41,6 +42,8 @@ class _CommonScreenState extends State<CommonScreen>
         );
       case 3:
         return VolunteerScreen();
+      case 4:
+        return ProfileScreen();
     }
   }
 
@@ -268,13 +271,14 @@ class _CommonScreenState extends State<CommonScreen>
                           width: _screensize.width * 0.2,
                           child: Column(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Profile"),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Settings"),
+                              InkWell(
+                                onTap: (){
+                                  setSelected(4);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Profile"),
+                                ),
                               ),
                               InkWell(
                                 onTap: (){
@@ -300,40 +304,6 @@ class _CommonScreenState extends State<CommonScreen>
         ),
       ),
     );
-  }
-
-  _showMoreOptionsDialog(BuildContext context) {
-    return showModalBottomSheet<bool>(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width * 0.2,
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                    title: Text("Account"),
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.clear,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    )),
-                ListTile(
-                  title: Text(
-                    "Clear cart",
-                    style: TextStyle(color: Color(0xffF23D3D)),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            ),
-          );
-        });
   }
 }
 

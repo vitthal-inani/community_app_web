@@ -32,7 +32,7 @@ class AuthService{
 //    var a=await _db.collection('Review').document('gname').get();
 //    print(a.data["Rating"]);
   }
-  Future registerWithEmailAndPassword(BuildContext context,String name,String email,String password) async {
+  Future registerWithEmailAndPassword(BuildContext context,String name,String fullname,String email,String password) async {
     try {
       print("ghus");
        AuthResult result= await _auth.createUserWithEmailAndPassword(
@@ -40,7 +40,7 @@ class AuthService{
        FirebaseUser user=result.user;
       print("node id");
       //new user document
-      await DatabaseService(user.uid).createUserMetadata(name, email, "");
+      await DatabaseService(user.uid).createUserMetadata(name, email,fullname, "");
 //      globals.setUserData(user.uid).then((value){
 //        return true;
 //      });

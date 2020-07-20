@@ -10,18 +10,22 @@ class DatabaseService{
   final CollectionReference userCollection=Firestore.instance.collection('User');
   final CollectionReference volunCollection=Firestore.instance.collection('Volunteer');
 
-  Future createUserMetadata(String name,String email,String phone) async {
+  Future createUserMetadata(String name,String email,String fullname,String phone) async {
     return await userCollection.document(uid).setData({
       'Name':name,
       'Email':email,
+      'Fullname':fullname,
       'Phone':phone,
       'isVolunteer': false,
+      'Country': "",
     });
   }
 
-  Future updateUserMetadata() async {
+  Future updateUserMetadata(String country) async {
+    print("in user meta data");
     return await userCollection.document(uid).updateData({
       'isVolunteer': true,
+      'Country':country,
     });
   }
 
@@ -33,7 +37,21 @@ class DatabaseService{
   }
 
   Future setVolunteer(String country,String name,String email,String phone,String time,List tags,String socID) async {
+    print("In set volunteer");
     return await volunCollection.document(country).collection('Volunteers').document(globals.uid).setData({
+      'Name': name,
+      'Email': email,
+      'Phone': phone,
+      'Time': time,
+      'Tags': tags,
+      'Social':socID,
+    });
+  }
+
+
+  Future updateVolunteer(String name,String email,String phone,String time,List tags,String socID) async {
+    print("In update volunteer");
+    return await volunCollection.document(globals.volCountry).collection('Volunteers').document(globals.uid).updateData({
       'Name': name,
       'Email': email,
       'Phone': phone,

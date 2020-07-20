@@ -188,7 +188,7 @@ class _AuthScreenSignState extends State<AuthScreenSign> {
                   RaisedButton(
                     onPressed: () async {
                       _key.currentState.save();
-                      auth.registerWithEmailAndPassword(context, username, email, password).then((value) => globals.setUserData(value).then((value){
+                      auth.registerWithEmailAndPassword(context, username,fullname, email, password).then((value) => globals.setUserData(value).then((value){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>CommonScreen()));
                       }));
                     },

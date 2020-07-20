@@ -9,15 +9,33 @@ class VolunteerScreen extends StatefulWidget {
 
 class _VolunteerScreenState extends State<VolunteerScreen> {
   DatabaseService db=DatabaseService(globals.uid);
+  final _formKey = GlobalKey<FormState>();
+
   bool isVolunteer = globals.isVolunteer;
   String dropdownValue="Work Hours(9am-5pm)";
   String country;
   String phone;
   String email;
   String id;
-
   List<bool> _tagsSelected=List.generate(6, (_) => false);
-  final _formKey = GlobalKey<FormState>();
+
+  updateVolunteerScreen(){
+    setState(() {
+      country=globals.volCountry;
+      phone=globals.volPhone;
+      email=globals.volEmail;
+      id=globals.volSocial;
+      dropdownValue=globals.volTime;
+      _tagsSelected=globals.volTags;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(isVolunteer)updateVolunteerScreen();
+  }
   @override
   Widget build(BuildContext context) {
     final _screensize = MediaQuery.of(context).size;
@@ -249,10 +267,12 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                                   child: Text("Volunteer"),
                                   onPressed: (){
                                     _formKey.currentState.save();
+                                    print("readuid"+globals.uid);
                                     db.countryDocument(country)
                                         .then((val)=>db.setVolunteer(country, globals.userName, email, phone, dropdownValue, _tagsSelected, id)
-                                    );
-                                    db.updateUserMetadata();
+                                    ).then((value) => db.updateUserMetadata(country));
+                                    globals.isVolunteer=true;
+                                    globals.readVolunteerData();
                                   },
                                 ),
                               )
@@ -262,56 +282,6 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                       ),
                     ),
               ),
-            Container(
-              padding: EdgeInsets.all(10),
-              alignment: Alignment.topRight,
-              margin: EdgeInsets.only(top: 20,right: 20,bottom: 20),
-              width: _screensize.width * 0.2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                border: Border.all(width: 1.0, color: Colors.grey),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text("Benefits"),
-                      Spacer(
-                        flex: 3,
-                      ),
-                      Text("Points"),
-                    ],
-                  ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-//                              Icon(Icons.account_circle),
-                                    Text("Company"),
-                                    Text("Points"),
-                                  ],
-                                ),
-                                Text("Offer"),
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
-                ],
-              ),
-            )
           ],
         ):Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -434,43 +404,21 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                       padding: EdgeInsets.all(8),
                       child: Text("Countries"),
                     ),
-                  Wrap(
-                    children: [
-                      InkWell(
-                        onTap: (){},
-                        child: Card(
-                          elevation: 5,
-                          child: Container(
-                            height: 150,
-                            width: _screensize.width*0.1,
-                            child: Icon(Icons.add),
-                          ),
-                        ),
+                  Card(
+                    elevation: 5,
+                    child: Container(
+                      height: 150,
+                      width: _screensize.width*0.1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(Icons.flight),
+                          Text(globals.volCountry),
+                        ],
                       ),
-                      Card(
-                        elevation: 5,
-                        child: Container(
-                          height: 150,
-                          width: _screensize.width*0.1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(Icons.flight),
-                              Text("Country Name"),
-                              Text("Popular Thing"),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15,left: 60,right: 60),
-                    child: RaisedButton(
-                      onPressed: (){},
-                      child: Text("Submit Changes"),
                     ),
                   ),
+//                  reviews
                 ],
               ),
             ),

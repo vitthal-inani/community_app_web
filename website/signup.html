@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Log-in</title>
+  <title>Sign Up</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/Login-Form-Clean.css">
@@ -12,41 +12,84 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="/__/firebase/7.15.0/firebase-app.js"></script>
   <script src="/__/firebase/7.15.0/firebase-auth.js"></script>
+  <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
 
   <script type="text/javascript">
     /**
      * Handles the sign up button press.
      */
+    // var submit = document.getElementById('quickstart-sign-in');
+    // submit.onclick = toggleSignIn;
+
     function handleSignUp() {
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
+      var confPassword = document.getElementById('confPassword').value;
       if (email.length < 4) {
-        alert('Please enter an email address.');
+        alert('Please enter a valid email address.');
         return;
       }
       if (password.length < 4) {
         alert('Please enter a password.');
         return;
       }
+      if (password.localeCompare(confPassword) != 0) {
+        alert("Passwords do not match.");
+      }
       // Create user with email and pass.
       // [START createwithemail]
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-        // [END_EXCLUDE]
-      });
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+          alert("test1");
+          var user = firebase.auth().currentUser;
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var providerData = user.providerData;
+          setUserInfo(photoURL, "", displayName, email, uid)
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          alert("test2");
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+        });
       // [END createwithemail]
     }
 
+    /**function setUserInfo(profileImageUrl, profileBannerUrl, username, email, uid) {
+      var userId = firebase.auth().currentUser.uid;
+      var ref = firebase.database().ref();
+      var userRef = ref.child("users").child(userId);
+
+      userRef.set({
+        username: username,
+        username_lowercase: username.toLowerCase().replace(" ", ""),
+        email: email,
+        profileImageUrl: profileImageUrl,
+        profileBannerUrl: profileBannerUrl
+      }, function(error) {
+        if (error) {
+          var errorMessage = error.message;
+
+          window.alert("Something went wrong : " + errorMessage);
+        } else {
+          window.alert("Account successfully created");
+        }
+      });
+    }
+    */
     /**
      * Sends an email verification to the user.
      */
@@ -60,7 +103,18 @@
       });
       // [END sendemailverification]
     }
-
+    /** const firebaseConfig = {
+      apiKey: "AIzaSyCglTwK0_8OpDJdJIJdRv0eGJH4IslnLXo",
+      authDomain: "trial-d1278.firebaseapp.com",
+      databaseURL: "https://trial-d1278.firebaseio.com",
+      projectId: "trial-d1278",
+      storageBucket: "trial-d1278.appspot.com",
+      messagingSenderId: "631653013182",
+      appId: "1:631653013182:web:0f0cc7f1093937baffb0ef",
+      measurementId: "G-0J7EE8MHY3"
+    };
+    firebase.initializeApp(firebaseConfig);
+    */
     /**
      * initApp handles setting up UI event listeners and registering Firebase auth listeners:
      *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
@@ -82,6 +136,7 @@
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
+          setUserInfo(photoURL, "", displayName, email, uid)
           // [START_EXCLUDE]
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
           document.getElementById('quickstart-sign-in').textContent = 'Sign out';
@@ -125,8 +180,8 @@
       <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
       <div class="form-group"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
       <div class="form-group"><input class="form-control" type="password" id="password" name="password" placeholder="Password"></div>
-      <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Confirm Password"></div>
-      <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="quickstart-sign-up">Sign Up</button></div>
+      <div class="form-group"><input class="form-control" type="password" id="confPassword" name="confPassword" placeholder="Confirm Password"></div>
+      <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="quickstart-sign-up" name="signup">Sign Up</button></div>
       <div class="form-group">
         <a class="forgot">Didn&apos;t get verification email?</a>
         <a class="forgot" id="quickstart-verify-email">Resend</a>

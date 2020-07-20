@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Log-in</title>
+  <title>Log In</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/Login-Form-Clean.css">
@@ -12,12 +12,14 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="/__/firebase/7.15.0/firebase-app.js"></script>
   <script src="/__/firebase/7.15.0/firebase-auth.js"></script>
+  <script src="/__/firebase/7.16.1/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
 
   <script type="text/javascript">
     /**
      * Handles the sign in button press.
      */
+
     function toggleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
@@ -38,6 +40,7 @@
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
           // Handle Errors here.
+          alert("Error logging in")
           var errorCode = error.code;
           var errorMessage = error.message;
           // [START_EXCLUDE]
@@ -48,12 +51,15 @@
           }
           console.log(error);
           document.getElementById('quickstart-sign-in').disabled = false;
+          // evt.preventDefault();
           // [END_EXCLUDE]
         });
         // [END authwithemail]
       }
       document.getElementById('quickstart-sign-in').disabled = true;
     }
+    // var submit = document.getElementById('quickstart-sign-in');
+    // submit.onclick = toggleSignIn;
     /**
      *Sends a password reset email
      */
@@ -80,6 +86,17 @@
       });
       // [END sendpasswordemail];
     }
+    // const firebaseConfig = {
+    //   apiKey: "AIzaSyCglTwK0_8OpDJdJIJdRv0eGJH4IslnLXo",
+    //   authDomain: "trial-d1278.firebaseapp.com",
+    //   databaseURL: "https://trial-d1278.firebaseio.com",
+    //   projectId: "trial-d1278",
+    //   storageBucket: "trial-d1278.appspot.com",
+    //   messagingSenderId: "631653013182",
+    //   appId: "1:631653013182:web:0f0cc7f1093937baffb0ef",
+    //   measurementId: "G-0J7EE8MHY3"
+    // };
+    // firebase.initializeApp(firebaseConfig);
     /**
      * initApp handles setting up UI event listeners and registering Firebase auth listeners:
      *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
@@ -94,6 +111,7 @@
         // [END_EXCLUDE]
         if (user) {
           // User is signed in.
+          alert("Sign in successful!");
           var displayName = user.displayName;
           var email = user.email;
           var emailVerified = user.emailVerified;
@@ -143,7 +161,7 @@
       <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
       <div class="form-group"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
       <div class="form-group"><input class="form-control" type="password" id="password" name="password" placeholder="Password"></div>
-      <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="quickstart-sign-in" name="signin">Log In</button></div>
+      <div class="form-group"><button class="btn btn-primary btn-block" type="submit" id="quickstart-sign-in" name="signin">Meow</button></div>
       <a class="forgot" href="/signup.html">Don&apos;t have an account yet? Sign up</a>
       <a class="forgot" id="quickstart-password-reset">Forgot your email or password?</a>
     </form>

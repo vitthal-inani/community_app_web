@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:comm_web/globals.dart' as globals;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,12 +12,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double topValue = 250;
   bool onTop = false;
-
+  List countries=['France','Egypt','Germany','Japan'];
 //  List<dynamic> countries=
 //  refCountries.countries.map((e) => e['name']).toList();
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     final _screensize = MediaQuery.of(context).size;
+    globals.populateReview();
     return Container(
       width: _screensize.width * 0.85 - 10,
       color: Colors.white,
@@ -40,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Align(
                         alignment: Alignment.topLeft,
-                        child: Text("Popular Countries")),
+                        child: Text("Popular Countries",style: TextStyle(
+                            fontSize: 20,fontWeight: FontWeight.w500),),),
                     Padding(
                       padding: EdgeInsets.all(10),
                     ),
@@ -50,20 +58,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
-                          itemCount: 4,
+                          itemCount: countries.length,
                           itemBuilder: (context, index) {
                             return Card(
                               elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
+                              ),
                               child: Container(
                                 height: 150,
                                 width: _screensize.width * 0.1,
+                                padding: EdgeInsets.all(10),
                                 child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Icon(Icons.flight),
-                                    Text("Country Name"),
-                                    Text("Popular Thing"),
+                                    Text(countries[index],style: TextStyle(
+                                      fontSize: 20,fontWeight: FontWeight.w500
+                                    ),),
+                                    Text("Popularity Thing"),
                                   ],
                                 ),
                               ),
@@ -72,22 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(10),
-                    ),
-                    Container(
-                      height: 20,
-                      width: 140,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        onPressed: () {},
-                        color: Colors.white,
-                        child: Row(
-                          children: [
-                            Text("Show more"),
-                            Icon(Icons.keyboard_arrow_down),
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(30),
@@ -164,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.all(5),
                             ),
                         shrinkWrap: true,
-                        itemCount: 10,
+                        itemCount: globals.reviewDocs.length,
                         itemBuilder: (context, index) {
                           return Card(
                             shape: RoundedRectangleBorder(
@@ -177,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Account Name",
+                                    globals.reviewDocs[index]['Name'],
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15),
@@ -186,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       allowHalfRating: false,
                                       onRated: (v) {},
                                       starCount: 5,
-                                      rating: 3,
+                                      rating: globals.reviewDocs[index]['Rating'],
                                       size: 15.0,
                                       isReadOnly: true,
 //                                        fullRatedIconData: Icons.blur_off,
@@ -194,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Color(0xfffcc340),
                                       borderColor: Color(0xfffcc340),
                                       spacing: 0.0),
-                                  Text("Reviewgdhbjenkflrgbjekrgvbwjkfwgjwhe"),
+                                  Text(globals.reviewDocs[index]['Review']),
                                 ],
                               ),
                             ),

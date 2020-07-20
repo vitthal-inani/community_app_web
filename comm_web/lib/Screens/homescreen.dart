@@ -7,6 +7,7 @@ import 'package:comm_web/Services/auth.dart';
 import 'package:comm_web/globals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:comm_web/globals.dart' as globals;
 
 class CommonScreen extends StatefulWidget {
   @override
@@ -57,6 +58,7 @@ class _CommonScreenState extends State<CommonScreen>
     _selected[0]=true;
     initiatingAnimations();
     expandController();
+//    globals.populateReview();
   }
 
   void initiatingAnimations() {
@@ -306,125 +308,3 @@ class _CommonScreenState extends State<CommonScreen>
     );
   }
 }
-
-//DefaultTabController(
-//        length: 4,
-//        child: Scaffold(
-//          appBar: PreferredSize(
-//            preferredSize: Size(_screensize.width,_screensize.height),
-//            child: RotatedBox(
-//              quarterTurns: 1,
-//              child: TabBar(
-//                indicatorColor: Colors.deepPurpleAccent,
-//                  labelColor: Colors.lightBlueAccent,
-//                  tabs: [
-//                        RotatedBox(
-//                          quarterTurns: 3,
-//                          child: Tab(child: Container(
-//                            padding: EdgeInsets.all(8),
-//                              child: Text("Home")),icon: Icon(Icons.home,color: Colors.black,),),
-//                        ),
-//                        RotatedBox(
-//                          quarterTurns: 3,
-//                          child: Tab(child: Container(
-//                              padding: EdgeInsets.all(8),
-//                              child: Text("Guides")),icon: Icon(Icons.people),),
-//                        ),
-//                        RotatedBox(
-//                          quarterTurns: 3,
-//                          child: Tab(child: Container(padding: EdgeInsets.all(8),
-//                              child: Text("History")),icon: Icon(Icons.history),),
-//                        ),
-//                        RotatedBox(
-//                          quarterTurns: 3,
-//                          child: Tab(iconMargin: EdgeInsets.all(3),
-//                            child: Padding(
-//                            padding: const EdgeInsets.all(8.0),
-//                            child: Text("Volunteer"),
-//                          ),icon: Icon(Icons.person_pin_circle),),
-//                        ),
-//                      ],
-//              ),
-//            ),
-//          ),
-//          body: TabBarView(
-//            children: [
-//              HomeScreen(),
-//                    Container(
-//                      color: Colors.white,
-//                      child: Text("Black"),
-//                    ),
-//                    Container(
-//                      color: Colors.black,
-//                      child: Text("Black"),
-//                    ),
-//                    VolunteerScreen(),
-//            ],
-//          ),
-//        ),
-//      )
-
-//Scaffold(
-//      body: Container(
-//        margin: EdgeInsets.only(top:10,left: 10,bottom: 10),
-//        child: Material(
-//          elevation: 40,
-//            borderRadius: BorderRadius.only(
-//              topLeft: Radius.circular(50),
-//              bottomLeft: Radius.circular(50),
-//            ),
-//          child: Container(
-//            height: _screensize.height-20,
-//            width: _screensize.width-10,
-//            child: Column(
-//              mainAxisAlignment: MainAxisAlignment.center,
-//              children: <Widget>[
-////                Spacer(),
-//                Expanded(
-//                  child: VerticalTabs(
-////                  backgroundColor: Color(0xffe6e6ff),
-//                    tabBackgroundColor: Color(0xffe6e6ff),
-//                    tabTextStyle: TextStyle(color: Colors.black),
-//                    selectedTabBackgroundColor: Color(0xff8080ff),
-//                    selectedTabTextStyle: TextStyle(color: Color(0xff4d4dff)),
-//                    indicatorColor: Colors.white,
-//                    indicatorWidth: 10,
-//
-//                    tabsWidth: _screensize.width*0.2,
-//
-////                  indicatorSide: IndicatorSide.end,
-//                    tabs: [
-//                      Tab(child: Container(
-//                        padding: EdgeInsets.all(8),
-//                          child: Text("Home")),icon: Icon(Icons.home,color: Colors.black,),),
-//                      Tab(child: Container(
-//                          padding: EdgeInsets.all(8),
-//                          child: Text("Guides")),icon: Icon(Icons.people),),
-//                      Tab(child: Container(padding: EdgeInsets.all(8),
-//                          child: Text("History")),icon: Icon(Icons.history),),
-//                      Tab(iconMargin: EdgeInsets.all(3),
-//                        child: Padding(
-//                        padding: const EdgeInsets.all(8.0),
-//                        child: Text("Volunteer"),
-//                      ),icon: Icon(Icons.person_pin_circle),),
-//                    ],
-//                    contents: [
-//                      HomeScreen(),
-//                      Container(
-//                        color: Colors.white,
-//                        child: Text("Black"),
-//                      ),
-//                      Container(
-//                        color: Colors.black,
-//                        child: Text("Black"),
-//                      ),
-//                      VolunteerScreen(),
-//                    ],
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-//        ),
-//      ),
-//    );

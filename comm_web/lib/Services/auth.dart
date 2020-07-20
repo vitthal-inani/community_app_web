@@ -44,6 +44,7 @@ class AuthService{
 //      globals.setUserData(user.uid).then((value){
 //        return true;
 //      });
+      globals.populateReview();
       return user.uid;
     } catch (e) {
       print(e.toString());
@@ -61,6 +62,7 @@ class AuthService{
 //      globals.setUserData(user.uid).then((value){
 //        return true;
 //      });
+      globals.populateReview();
       return user.uid;
     } catch (e) {
       print(e.toString());

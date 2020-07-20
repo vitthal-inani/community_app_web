@@ -262,7 +262,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text("Volunteer"),
                 onPressed: (){
                   _formKey.currentState.save();
-                  db.updateVolunteer(globals.userName, email, phone, dropdownValue, _tagsSelected, id);
+                  db.updateVolunteer(username, email, phone, dropdownValue, _tagsSelected, id);
 //                  db.updateUserMetadata();
                 },
               ),
@@ -311,6 +311,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onSaved: (val)=> email=val,
               ),
             ),
+            Container(
+              width: _screensize.width*0.4,
+              margin: EdgeInsets.only(left: 60,right: 60),
+              child: RaisedButton(
+                child: Text("Volunteer"),
+                onPressed: (){
+                  _formKey.currentState.save();
+                  db.updateUserData(username,fullname,email);
+//                  db.updateUserMetadata();
+                },
+              ),
+            )
           ],
         ),
       ),

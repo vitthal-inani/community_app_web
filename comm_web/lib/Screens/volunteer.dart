@@ -408,7 +408,7 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                     elevation: 5,
                     child: Container(
                       height: 150,
-                      width: _screensize.width*0.1,
+                      width: 60,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -418,64 +418,9 @@ class _VolunteerScreenState extends State<VolunteerScreen> {
                       ),
                     ),
                   ),
-//                  reviews
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              alignment: Alignment.topRight,
-              margin: EdgeInsets.only(top: 20,right: 20,bottom: 20),
-              width: _screensize.width * 0.2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                border: Border.all(width: 1.0, color: Colors.grey),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text("Reviews"),
-                      Spacer(
-                        flex: 3,
-                      ),
-                      Text("Overall Rating"),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text("5"),
-                    ],
-                  ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-//                              Icon(Icons.account_circle),
-                                    Text("Account Name"),
-                                    Text("Rating"),
-                                  ],
-                                ),
-                                Text("Review"),
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
-                ],
-              ),
-            )
           ],
         ),
       ],

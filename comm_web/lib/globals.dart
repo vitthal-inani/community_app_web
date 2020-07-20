@@ -7,6 +7,9 @@ String fullName;
 String email;
 bool isVolunteer;
 
+List reviewDocs;
+List volReviewDocs;
+
 String volCountry;
 List volTags;
 String volTime;
@@ -26,8 +29,25 @@ Future<bool> setUserData(String uid1) async {
   isVolunteer = userDoc['isVolunteer'];
   volCountry = userDoc['Country'];
   print(volCountry);
-  if(isVolunteer)readVolunteerData();
-  return true;
+  if(isVolunteer) {
+    readVolunteerData();
+    populateVolReview();
+  }
+    return true;
+}
+
+
+populateVolReview() async {
+  final docID=Firestore.instance.collection('Review').document(uid).documentID;
+  if(docID.isNotEmpty){
+    final docs=await Firestore.instance.collection('Review').document(uid).collection('Reviews').getDocuments();
+    volReviewDocs=docs.documents;
+  }
+}
+populateReview() async {
+  final docs=await Firestore.instance.collection('Review').getDocuments();
+  reviewDocs=docs.documents;
+  print(reviewDocs[0]['Rating']);
 }
 
 undoUserData() async {

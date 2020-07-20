@@ -29,6 +29,14 @@ class DatabaseService{
     });
   }
 
+  Future updateUserData(String username,fullname,email) async {
+    print("in user meta data");
+    return await userCollection.document(uid).updateData({
+      'Name': username,
+      'Fullname':fullname,
+      'Email':email,
+    });
+  }
   Future countryDocument(String country) async{
     print(country);
     return await volunCollection.document(country).setData({
